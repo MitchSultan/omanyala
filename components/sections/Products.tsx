@@ -81,7 +81,7 @@ export function Products() {
               {/* PLACEHOLDER IMAGE */}
               <div className="relative h-52 overflow-hidden bg-[#1A1A1A]">
                 <Image
-                  src="/images/product-placeholder.jpg"
+                  src="/images/knc.jfif"
                   alt={product.imageLabel}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"

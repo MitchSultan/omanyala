@@ -31,11 +31,11 @@ export function Partners({ logos = defaultLogos }: { logos?: Logo[] }) {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-white overflow-hidden">
+    <section className="py-16 md:py-24  overflow-hidden">
       {/* Optional heading */}
       <div className="max-w-6xl mx-auto mb-10 px-4 text-center">
-        <h2 className="text-sm text-black font-semibold uppercase">
-          Trusted by industry leaders
+        <h2 className="text-4xl text-white font-semibold uppercase">
+          We've partnered with
         </h2>
       </div>
 
@@ -62,7 +62,7 @@ export function Partners({ logos = defaultLogos }: { logos?: Logo[] }) {
                 key={`${logo.id}-${logo.alt}`} // Using alt as backup uniqueness
                 className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 pl-8 first:pl-0"
               >
-                <div className="flex bg-white items-center justify-center p-2 opacity-70 hover:opacity-100 transition-all duration-500">
+                <div className="flex  items-center justify-center p-2 opacity-70 hover:opacity-100 transition-all duration-500">
                   <Image
                     src={logo.src}
                     alt={logo.alt}

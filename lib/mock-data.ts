@@ -37,7 +37,7 @@ export const heroData = {
   place: "1st place",
   headline: "AFRICA'S FASTEST MAN",
   subheadline:
-    "Mock prototype built around Ferdinand Omanyala's speed, discipline and global ambition.",
+    "Ferdinand is an olympian, African record holder, African commonwealth champion and an Adidas athlete.",
   upcomingRace: "FBK Games · Hengelo · 21 Jul 2026",
 };
 
@@ -61,7 +61,7 @@ export const raceEntries: RaceEntry[] = [
   },
   {
     name: "Kip Keino Classic",
-    url: "/kip-keino-classic.jfif",
+    url: "/images/kipkeino.jfif",
     location: "Nairobi",
     date: "24 Apr 2026",
     time: "9.96s",
@@ -70,7 +70,7 @@ export const raceEntries: RaceEntry[] = [
   },
   {
     name: "Botswana Grand Prix",
-    url: "/botswana-grand-prix.jfif",
+    url: "/images/botswana.jfif",
     location: "Gaborone",
     date: "26 Apr 2026",
     time: "9.95s",
@@ -79,7 +79,7 @@ export const raceEntries: RaceEntry[] = [
   },
   {
     name: "Diamond League, Xiamen",
-    url: "/diamond-league-xiamen.jfif",
+    url: "/images/xiamen.jfif",
     location: "Xiamen",
     date: "23 May 2026",
     time: "9.94s",
@@ -88,7 +88,7 @@ export const raceEntries: RaceEntry[] = [
   },
   {
     name: "Kenya National Championships",
-    url: "/kenya-national-championships.jfif",
+    url: "/images/knc.jfif",
     location: "Nairobi",
     date: "20 Jun 2026",
     time: "10.00s",
@@ -97,7 +97,7 @@ export const raceEntries: RaceEntry[] = [
   },
   {
     name: "Commonwealth Games Trials",
-    url: "/commonwealth-games-trials.jfif",
+    url: "/images/coomon.jfif",
     location: "Nairobi",
     date: "20 Jun 2026",
     time: "10.00s",
