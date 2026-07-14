@@ -20,7 +20,7 @@ export function About() {
           {/* PLACEHOLDER: Replace with real portrait of Ferdinand Omanyala */}
           <div className="relative aspect-[4/5]">
             <Image
-              src="/hero.jfif"
+              src="/hero.jpeg"
               alt="Portrait of Ferdinand Omanyala in a sprint-ready pose"
               fill
               sizes="(max-width: 1024px) 100vw, 45vw"
