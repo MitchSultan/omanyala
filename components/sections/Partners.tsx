@@ -22,6 +22,8 @@ const defaultLogos: Logo[] = [
   { id: 3, alt: "CanvasPile", src: "/4.png" },
   { id: 4, alt: "MadGraphix", src: "/8.png" },
   { id: 5, alt: "Evolve Sphere", src: "/medex.png" },
+  { id: 5, alt: "craw", src: "/craw.jpeg" },
+  { id: 5, alt: "mer", src: "/mer.jpeg" },
 ];
 
 export function Partners({ logos = defaultLogos }: { logos?: Logo[] }) {

@@ -62,7 +62,7 @@ export function SocialMedia() {
         </div>
 
         {/* Mock post grid — placeholder tiles */}
-        <div className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-6">
+        {/* <div className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-6">
           {Array.from({ length: 6 }).map((_, i) => (
             <div
               key={i}
@@ -71,7 +71,7 @@ export function SocialMedia() {
               Post {i + 1}
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -12,7 +12,7 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="border-t border-white/10 bg-[#0A0A0A] px-6 py-24 sm:px-8 sm:py-32 lg:px-12"
+      className="border-t border-white/10 bg-[#0A0A0A] px-6 pt-16  sm:px-8 md:pt-32 lg:px-12"
     >
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         {/* Portrait image */}

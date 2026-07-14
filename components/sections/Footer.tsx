@@ -20,8 +20,7 @@ export function Footer() {
               OMANYALA
             </p>
             <p className="mt-4 text-sm leading-7">
-              Mock prototype for a performance-driven sports brand experience.
-              Replace with verified content before launch.
+              Ferdinand is an olympian, African record holder, African commonwealth champion and an Adidas athlete.
             </p>
           </div>
 

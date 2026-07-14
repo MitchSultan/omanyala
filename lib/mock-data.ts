@@ -16,6 +16,7 @@ export type Partner ={
 export type ProductItem = {
   name: string;
   price: string;
+  url:string;
   imageLabel: string;
   description: string;
 };
@@ -47,12 +48,18 @@ export const aboutStats: StatItem[] = [
   { value: 10, suffix: "x", label: "sub-10 races", decimals: 0 },
   { value: 11, suffix: "", label: "current world ranking", prefix: "#" },
 ];
+export const foundStats: StatItem[] = [
+  { value: 9.77, suffix: "s", label: "Can change lives", decimals: 2 },
+  { value: 2, suffix: "x", label: "school Partners" },
+  { value: 30, suffix: "x", label: "Sprint club members", decimals: 0 },
+  { value: 1, suffix: " M+", label: "Money donated", prefix: "#" },
+];
 
 // MOCK DATA: illustrative placeholder content for the prototype only.
 export const raceEntries: RaceEntry[] = [
   {
     name: "Addis Ababa Grand Prix",
-    url:"/hero.jfif",
+    url:"/hero.jpeg",
     location: "Addis Ababa",
     date: "18 Apr 2026",
     time: "9.98s",
@@ -61,7 +68,7 @@ export const raceEntries: RaceEntry[] = [
   },
   {
     name: "Kip Keino Classic",
-    url: "/images/kipkeino.jfif",
+    url: "/images/kipkeino.jpeg",
     location: "Nairobi",
     date: "24 Apr 2026",
     time: "9.96s",
@@ -70,7 +77,7 @@ export const raceEntries: RaceEntry[] = [
   },
   {
     name: "Botswana Grand Prix",
-    url: "/images/botswana.jfif",
+    url: "/images/botswana.jpeg",
     location: "Gaborone",
     date: "26 Apr 2026",
     time: "9.95s",
@@ -79,7 +86,7 @@ export const raceEntries: RaceEntry[] = [
   },
   {
     name: "Diamond League, Xiamen",
-    url: "/images/xiamen.jfif",
+    url: "/images/xiamen.jpeg",
     location: "Xiamen",
     date: "23 May 2026",
     time: "9.94s",
@@ -88,7 +95,7 @@ export const raceEntries: RaceEntry[] = [
   },
   {
     name: "Kenya National Championships",
-    url: "/images/knc.jfif",
+    url: "/images/knc.jpeg",
     location: "Nairobi",
     date: "20 Jun 2026",
     time: "10.00s",
@@ -97,7 +104,7 @@ export const raceEntries: RaceEntry[] = [
   },
   {
     name: "Commonwealth Games Trials",
-    url: "/images/coomon.jfif",
+    url: "/images/coomon.jpeg",
     location: "Nairobi",
     date: "20 Jun 2026",
     time: "10.00s",
@@ -109,24 +116,28 @@ export const raceEntries: RaceEntry[] = [
 export const products: ProductItem[] = [
   {
     name: "Aero Spike 9",
+    url: "/shopping.webp",
     price: "KES 18,500",
     imageLabel: "Lightning-fast track spike",
     description: "Carbon plate speed for explosive starts.",
   },
   {
     name: "Velocity Tee",
+    url:"/tee.jpeg",
     price: "KES 3,200",
     imageLabel: "Performance training tee",
     description: "Breathable compression for hard reps.",
   },
   {
     name: "Pulse Recovery Kit",
+    url: "/kit.jpeg",
     price: "KES 7,900",
     imageLabel: "Recovery foam roller and band",
     description: "Recovery essentials between sessions.",
   },
   {
     name: "Track Pack",
+    url:"/pack.jpeg",
     price: "KES 12,400",
     imageLabel: "Athlete duffel with race kit",
     description: "Built for travel and competition weeks.",
@@ -153,6 +164,14 @@ export const partners: Partner[]= [
   {
     name: "Adidas",
     logo: "/medex.png"
+  },
+  {
+    name: "mer",
+    logo: "/mer.jpeg"
+  },
+  {
+    name: "craw",
+    logo: "/craw.jpeg"
   },
   
 ];

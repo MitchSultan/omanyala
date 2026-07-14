@@ -1,6 +1,7 @@
 import React from "react";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
+import { Found } from "@/components/sections/Found";
 import { PreviousRuns } from "@/components/sections/PreviousRuns";
 import {MissionVision} from "@/components/sections/MissionVision";
 
@@ -18,6 +19,7 @@ export default function Home() {
             <Navbar />
             <Hero/>
             <About/>
+            <Found/>
             <MissionVision/>
             <PreviousRuns/>
             <Partners/>

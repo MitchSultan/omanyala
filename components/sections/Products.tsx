@@ -71,21 +71,38 @@ export function Products() {
         </div>
 
         {/* MOCK PRODUCTS: placeholder data — replace with real merchandise */}
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        {/*
+          Mobile (< sm): horizontal snap-scroll carousel, cards fixed width, no scrollbar.
+          sm and up: back to the original responsive grid.
+        */}
+        <div
+          className="
+            mt-10
+            -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-6 pb-2
+            [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+            sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0
+            xl:grid-cols-4
+          "
+        >
           {products.map((product) => (
             <Card
               key={product.name}
               data-product-card
-              className="group overflow-hidden border-white/10 bg-[#111111] p-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(212,255,63,0.06)]"
+              className="
+                group w-[80vw] shrink-0 snap-start overflow-hidden border-white/10 bg-[#111111] p-0
+                transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(212,255,63,0.06)]
+                xs:w-[70vw]
+                sm:w-auto sm:shrink sm:snap-align-none
+              "
             >
               {/* PLACEHOLDER IMAGE */}
-              <div className="relative h-52 overflow-hidden bg-[#1A1A1A]">
+              <div className="relative h-52 overflow-hidden bg-white">
                 <Image
-                  src="/images/knc.jfif"
+                  src={product.url}
                   alt={product.imageLabel}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 80vw, (max-width: 1280px) 50vw, 25vw"
+                  className="object-contain  transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>

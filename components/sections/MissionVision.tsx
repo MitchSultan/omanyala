@@ -64,9 +64,7 @@ export function MissionVision() {
             </h3>
             {/* MOCK COPY */}
             <p className="mt-6 text-lg leading-8 text-white/60">
-              Build a platform that turns speed into opportunity for young
-              athletes across Kenya and beyond. Every start is a chance to
-              rewrite what the world expects.
+              To cultivate and elevate sports excellence by fostering talent development, nurturing the growth of young talents, sustaining healthy sports and promoting environmentally sustainable practices
             </p>
           </div>
 

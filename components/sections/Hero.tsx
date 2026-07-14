@@ -118,7 +118,7 @@ export function Hero() {
         ref={videoRef}
         src="/he.mp4"
         className="absolute inset-0 h-full w-full object-cover"
-        poster="/hero.jfif"
+        poster="/hero.jpeg"
         autoPlay={!reducedMotion}
         loop
         muted
