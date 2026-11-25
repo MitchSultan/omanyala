@@ -3,18 +3,16 @@
  *
  * Purpose: Renders the "starting block" loader experience:
  *   - Track lane with tick marks and finish tape
- *   - Animated running legs (via RunnerLegs) that traverse left → right
  *   - Large counter (0 → 100%) driven by real asset-loading progress
  *   - Micro-states: ON YOUR MARKS → SET → GO
- *   - Ghost trails behind the runner for motion feel
  *   - Exit transition: tape snap, counter fade, clip-path wipe
  *
  * Props:
  *   - progress: 0–1 raw progress from useAssetProgress
  *   - onComplete: callback when exit animation finishes
  *
- * Connected to: LoaderGate.tsx (parent), RunnerLegs.tsx (child),
- *   motion.config.ts (tunables), useAssetProgress.ts (progress signal)
+ * Connected to: LoaderGate.tsx (parent), motion.config.ts (tunables),
+ *   useAssetProgress.ts (progress signal)
  *
  * Tweakables: All durations, eases, colours in LOADER & COLORS from motion.config.ts
  */
@@ -24,7 +22,6 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { LOADER, COLORS } from "@/lib/motion.config";
-import { RunnerLegs, type RunnerLegsHandle } from "./RunnerLegs";
 
 function subscribeReducedMotion(callback: () => void) {
   const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -51,11 +48,9 @@ export function Loader({ progress, onComplete }: LoaderProps) {
   const tapeRef = useRef<HTMLDivElement>(null);
   const topHalfRef = useRef<HTMLDivElement>(null);
   const bottomHalfRef = useRef<HTMLDivElement>(null);
-  const runnerGroupRef = useRef<HTMLDivElement>(null);
   const wordmarkRef = useRef<HTMLDivElement>(null);
   const counterBlockRef = useRef<HTMLDivElement>(null);
   const flashRef = useRef<HTMLDivElement>(null);
-  const legsRef = useRef<RunnerLegsHandle>(null);
   const tweenObj = useRef({ value: 0 });
   const hasCompletedRef = useRef(false);
   const startTimeRef = useRef<number>(0);
@@ -95,19 +90,6 @@ export function Loader({ progress, onComplete }: LoaderProps) {
           if (rounded <= 33) setMicroState("ON YOUR MARKS");
           else if (rounded <= 66) setMicroState("SET");
           else setMicroState("GO");
-
-          // Update runner position
-          if (runnerGroupRef.current) {
-            const pct = rounded / 100;
-            runnerGroupRef.current.style.transform = `translateX(${pct * 100}%)`;
-          }
-
-          // Update runner speed (timeScale ramp)
-          if (legsRef.current?.timeline) {
-            const pct = rounded / 100;
-            const [lo, hi] = LOADER.timeScaleRange;
-            legsRef.current.timeline.timeScale(lo + pct * (hi - lo));
-          }
 
           // Update aria-valuenow every ~10%
           if (containerRef.current && rounded % 10 === 0) {
@@ -163,14 +145,7 @@ export function Loader({ progress, onComplete }: LoaderProps) {
       0.15
     );
 
-    // 4. Runner slides off screen
-    tl.to(
-      runnerGroupRef.current,
-      { x: "110%", duration: 0.3, ease: "power2.in" },
-      0.1
-    );
-
-    // 5. Two-half wipe
+    // 4. Two-half wipe
     tl.to(
       topHalfRef.current,
       { yPercent: -100, duration: LOADER.exitDuration, ease: LOADER.exitEase },
@@ -296,44 +271,6 @@ export function Loader({ progress, onComplete }: LoaderProps) {
               transformOrigin: "center",
             }}
           />
-
-          {/* Runner container — positioned by JS */}
-          <div
-            ref={runnerGroupRef}
-            className="absolute top-1/2"
-            style={{
-              left: 0,
-              width: "clamp(50px, 8vw, 80px)",
-              transform: "translateX(0%)",
-              willChange: "transform",
-            }}
-          >
-            {/* Ghost trail copies */}
-            {Array.from({ length: LOADER.ghostCount }).map((_, i) => (
-              <svg
-                key={`ghost-${i}`}
-                viewBox="-20 -10 60 100"
-                className="absolute top-0 left-0 w-full"
-                aria-hidden="true"
-                style={{
-                  transform: `translateX(${-(i + 1) * 15}px) translateY(-50%)`,
-                  opacity: 0.12 - i * 0.03,
-                }}
-              >
-                <RunnerLegs />
-              </svg>
-            ))}
-
-            {/* Main runner */}
-            <svg
-              viewBox="-20 -10 60 100"
-              className="relative w-full"
-              style={{ transform: "translateY(-50%)" }}
-              aria-hidden="true"
-            >
-              <RunnerLegs ref={legsRef} />
-            </svg>
-          </div>
         </div>
 
         {/* Bottom: Counter + tagline + micro-state */}
