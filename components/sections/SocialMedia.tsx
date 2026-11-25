@@ -3,6 +3,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { socials } from "@/lib/mock-data";
 import { useGSAPReveal } from "@/hooks/useGSAPReveal";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 
 const platformIcons: Record<string, string> = {
   Instagram: "📸",
@@ -28,9 +29,13 @@ export function SocialMedia() {
           <p className="text-xs uppercase tracking-[0.35em] text-[#D4FF3F]">
             Social
           </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl">
+          <ScrollReveal
+            as="h2"
+            mode="lines"
+            className="mt-3 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl"
+          >
             Fast updates, built for the feed.
-          </h2>
+          </ScrollReveal>
         </div>
 
         {/* Social platform cards */}

@@ -4,6 +4,8 @@ import Image from "next/image";
 import { foundStats } from "@/lib/mock-data";
 import { FoundCounter } from "@/components/FoundCounter";
 import { useGSAPReveal } from "@/hooks/useGSAPReveal";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 export function Found() {
   const sectionRef1 = useGSAPReveal<HTMLElement>();
@@ -23,23 +25,30 @@ export function Found() {
             <p className="text-xs uppercase tracking-[0.35em] text-[#D4FF3F]">
               About the Foundation
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl lg:text-5xl">
-              
-Omanyala Foundation Trust
-            </h2>
+            <ScrollReveal
+              as="h2"
+              mode="lines"
+              className="mt-3 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl lg:text-5xl"
+            >
+              Omanyala Foundation Trust
+            </ScrollReveal>
             {/* MOCK BIO: grounded in public facts for authentic feel */}
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
-              The Omanyala Foundation Trust is a nonprofit organization dedicated to advancing sports and physical activity by running various programs, raising funds, and engaging with the community.
-
-These activities play a crucial role in promoting sports and athletic development, particularly among underserved populations with an aim of creating a positive impact on individuals and communities in Kenya.
-            </p>
+            <ScrollReveal
+              as="p"
+              mode="words"
+              scrub
+              className="mt-6 max-w-2xl text-lg leading-8 text-white/70"
+            >
+              The Omanyala Foundation Trust is a nonprofit organization dedicated to advancing sports and physical activity by running various programs, raising funds, and engaging with the community. These activities play a crucial role in promoting sports and athletic development, particularly among underserved populations with an aim of creating a positive impact on individuals and communities in Kenya.
+            </ScrollReveal>
             
-            <a
-              href="#"
+            <TransitionLink
+              href="/foundation"
+              transitionLabel="FOUNDATION"
               className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.3em] text-[#D4FF3F] transition-colors hover:text-[#F5F5F0]"
             >
               About Foundation →
-            </a>
+            </TransitionLink>
           </div>
 
           {/* Animated stat counters — MOCK illustrative data */}

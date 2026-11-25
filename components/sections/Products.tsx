@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { products } from "@/lib/mock-data";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 export function Products() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -20,29 +21,31 @@ export function Products() {
     ).matches;
     if (reducedMotion) return;
 
-    const cards = el.querySelectorAll("[data-product-card]");
-    cards.forEach((card, i) => {
-      gsap.fromTo(
-        card,
-        { y: 40, opacity: 0, scale: 0.96 },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          delay: i * 0.1,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 88%",
-            once: true,
-          },
-        }
-      );
-    });
+    const ctx = gsap.context(() => {
+      const cards = el.querySelectorAll("[data-product-card]");
+      cards.forEach((card, i) => {
+        gsap.fromTo(
+          card,
+          { y: 40, opacity: 0, scale: 0.96 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.5,
+            delay: i * 0.1,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 88%",
+              once: true,
+            },
+          }
+        );
+      });
+    }, el);
 
     return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
+      ctx.revert();
     };
   }, []);
 
@@ -58,16 +61,21 @@ export function Products() {
             <p className="text-xs uppercase tracking-[0.35em] text-[#D4FF3F]">
               Running products
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl">
+            <ScrollReveal
+              as="h2"
+              mode="lines"
+              className="mt-3 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl"
+            >
               Gear for the next rep, the next race.
-            </h2>
+            </ScrollReveal>
           </div>
-          <Link
-            href="#"
+          <TransitionLink
+            href="/shop"
+            transitionLabel="SHOP"
             className="text-sm font-semibold uppercase tracking-[0.3em] text-[#D4FF3F] transition-colors hover:text-[#F5F5F0]"
           >
             View Full Store →
-          </Link>
+          </TransitionLink>
         </div>
 
         {/* MOCK PRODUCTS: placeholder data — replace with real merchandise */}

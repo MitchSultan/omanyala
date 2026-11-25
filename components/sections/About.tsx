@@ -4,6 +4,8 @@ import Image from "next/image";
 import { aboutStats } from "@/lib/mock-data";
 import { StatCounter } from "@/components/StatCounter";
 import { useGSAPReveal } from "@/hooks/useGSAPReveal";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 export function About() {
   const sectionRef = useGSAPReveal<HTMLElement>();
@@ -35,11 +37,20 @@ export function About() {
             <p className="text-xs uppercase tracking-[0.35em] text-[#D4FF3F]">
               About Ferdinand
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl lg:text-5xl">
+            <ScrollReveal
+              as="h2"
+              mode="lines"
+              className="mt-3 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl lg:text-5xl"
+            >
               From rugby to record books, built for the lane.
-            </h2>
+            </ScrollReveal>
             {/* MOCK BIO: grounded in public facts for authentic feel */}
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
+            <ScrollReveal
+              as="p"
+              mode="words"
+              scrub
+              className="mt-6 max-w-2xl text-lg leading-8 text-white/70"
+            >
               Born in Nairobi, Ferdinand Omanyala&apos;s journey to becoming
               Africa&apos;s fastest man began not on the track, but on the rugby
               pitch. A pivotal switch to sprinting unlocked raw, explosive
@@ -47,17 +58,23 @@ export function About() {
               blistering 9.77s in Nairobi. He followed it up by capturing
               Commonwealth Games gold in Birmingham — a statement of intent
               heard across the continent.
-            </p>
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-white/70">
+            </ScrollReveal>
+            <ScrollReveal
+              as="p"
+              mode="words"
+              scrub
+              className="mt-4 max-w-2xl text-lg leading-8 text-white/70"
+            >
               Today he trains with one goal: prove that African sprinters belong
               at the absolute top of the sport.
-            </p>
-            <a
-              href="#"
+            </ScrollReveal>
+            <TransitionLink
+              href="/story"
+              transitionLabel="STORY"
               className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.3em] text-[#D4FF3F] transition-colors hover:text-[#F5F5F0]"
             >
               Read Full Story →
-            </a>
+            </TransitionLink>
           </div>
 
           {/* Animated stat counters — MOCK illustrative data */}

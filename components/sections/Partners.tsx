@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 
 import {
   Carousel,
@@ -33,12 +34,16 @@ export function Partners({ logos = defaultLogos }: { logos?: Logo[] }) {
   }
 
   return (
-    <section className="py-16 md:py-24  overflow-hidden">
+    <section id="partners" className="py-16 md:py-24  overflow-hidden">
       {/* Optional heading */}
       <div className="max-w-6xl mx-auto mb-10 px-4 text-center">
-        <h2 className="text-4xl text-white font-semibold uppercase">
-          We've partnered with
-        </h2>
+        <ScrollReveal
+          as="h2"
+          mode="lines"
+          className="text-4xl text-white font-semibold uppercase"
+        >
+          We&apos;ve partnered with
+        </ScrollReveal>
       </div>
 
       {/* Carousel container */}

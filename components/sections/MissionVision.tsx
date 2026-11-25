@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 
 export function MissionVision() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -15,28 +16,30 @@ export function MissionVision() {
     ).matches;
     if (reducedMotion) return;
 
-    const cards = el.querySelectorAll("[data-mv-card]");
-    cards.forEach((card, i) => {
-      gsap.fromTo(
-        card,
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          delay: i * 0.15,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            once: true,
-          },
-        }
-      );
-    });
+    const ctx = gsap.context(() => {
+      const cards = el.querySelectorAll("[data-mv-card]");
+      cards.forEach((card, i) => {
+        gsap.fromTo(
+          card,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            delay: i * 0.15,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      });
+    }, el);
 
     return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
+      ctx.revert();
     };
   }, []);
 
@@ -59,13 +62,22 @@ export function MissionVision() {
             <p className="text-xs uppercase tracking-[0.35em] text-[#E4272A]">
               Mission
             </p>
-            <h3 className="mt-5 text-2xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-3xl lg:text-4xl">
+            <ScrollReveal
+              as="h3"
+              mode="lines"
+              className="mt-5 text-2xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-3xl lg:text-4xl"
+            >
               Push the African sprint story into the global spotlight.
-            </h3>
+            </ScrollReveal>
             {/* MOCK COPY */}
-            <p className="mt-6 text-lg leading-8 text-white/60">
+            <ScrollReveal
+              as="p"
+              mode="words"
+              scrub
+              className="mt-6 text-lg leading-8 text-white/60"
+            >
               To cultivate and elevate sports excellence by fostering talent development, nurturing the growth of young talents, sustaining healthy sports and promoting environmentally sustainable practices
-            </p>
+            </ScrollReveal>
           </div>
 
           {/* Vision */}
@@ -76,14 +88,23 @@ export function MissionVision() {
             <p className="text-xs uppercase tracking-[0.35em] text-[#D4FF3F]">
               Vision
             </p>
-            <h3 className="mt-5 text-2xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-3xl lg:text-4xl">
+            <ScrollReveal
+              as="h3"
+              mode="lines"
+              className="mt-5 text-2xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-3xl lg:text-4xl"
+            >
               Represent excellence with calm conviction and relentless rhythm.
-            </h3>
+            </ScrollReveal>
             {/* MOCK COPY */}
-            <p className="mt-6 text-lg leading-8 text-white/60">
+            <ScrollReveal
+              as="p"
+              mode="words"
+              scrub
+              className="mt-6 text-lg leading-8 text-white/60"
+            >
               A future where African sprinters are the standard, not the
               exception. Discipline, speed, and grace — on repeat.
-            </p>
+            </ScrollReveal>
           </div>
         </div>
       </div>

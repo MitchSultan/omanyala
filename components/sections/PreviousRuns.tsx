@@ -6,7 +6,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { raceEntries } from "@/lib/mock-data";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 
 /**
  * MOCK DATA: illustrative race data based on Omanyala's real 2026 season shape.
@@ -50,24 +51,26 @@ export function PreviousRuns() {
     ).matches;
     if (reducedMotion) return;
 
-    gsap.fromTo(
-      el,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 82%",
-          once: true,
-        },
-      }
-    );
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 82%",
+            once: true,
+          },
+        }
+      );
+    }, el);
 
     return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
+      ctx.revert();
     };
   }, []);
 
@@ -83,9 +86,13 @@ export function PreviousRuns() {
             <p className="text-xs uppercase tracking-[0.35em] text-[#D4FF3F]">
               Previous runs
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl">
+            <ScrollReveal
+              as="h2"
+              mode="lines"
+              className="mt-3 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl"
+            >
               A season of sharp starts.
-            </h2>
+            </ScrollReveal>
           </div>
           <div className="flex gap-2">
             <Button

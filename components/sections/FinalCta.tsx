@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useGSAPReveal } from "@/hooks/useGSAPReveal";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 
 export function FinalCta() {
   const ref = useGSAPReveal<HTMLElement>();
@@ -27,9 +28,13 @@ export function FinalCta() {
         <p className="text-xs uppercase tracking-[0.35em] text-[#D4FF3F]">
           Stay close
         </p>
-        <h2 className="mt-4 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl lg:text-5xl">
+        <ScrollReveal
+          as="h2"
+          mode="lines"
+          className="mt-4 text-3xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-4xl lg:text-5xl"
+        >
           Get race notes, updates, and reminders.
-        </h2>
+        </ScrollReveal>
         {/* <p className="mt-4 text-lg text-white/60">
           Join the mailing list. Be the first to know when Ferdinand lines up.
         </p> */}
