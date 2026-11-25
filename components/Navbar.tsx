@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#runs", label: "Runs" },
-  { href: "#mission", label: "Mission" },
-  { href: "#shop", label: "Shop" },
-  { href: "#partners", label: "Partners" },
+  { href: "/about", label: "About" },
+  { href: "/foundation", label: "Foundation" },
+  { href: "/runs", label: "Runs" },
+  // { href: "/mission", label: "Mission" },
+  { href: "/shop", label: "Shop" },
+  { href: "/partners", label: "Partners" },
 ];
 
 export function Navbar() {
@@ -57,21 +58,21 @@ export function Navbar() {
             }`}
           >
             <div className="flex w-full items-center justify-between gap-8">
-              <Link
-                href="#hero"
+              <TransitionLink
+                href="/#hero"
                 className="text-sm font-semibold uppercase tracking-[0.35em] text-[#F5F5F0]"
               >
                 OMANYALA
-              </Link>
+              </TransitionLink>
               <div className="hidden items-center gap-6 md:flex">
                 {navLinks.map((link) => (
-                  <Link
+                  <TransitionLink
                     key={link.href}
                     href={link.href}
                     className="relative text-sm text-white/60 transition-colors hover:text-[#D4FF3F]"
                   >
                     {link.label}
-                  </Link>
+                  </TransitionLink>
                 ))}
               </div>
               {/* Mobile hamburger */}
@@ -107,14 +108,14 @@ export function Navbar() {
             </button>
             <nav className="mt-12 flex flex-col gap-6">
               {navLinks.map((link) => (
-                <Link
+                <TransitionLink
                   key={link.href}
                   href={link.href}
                   className="text-2xl font-semibold text-[#F5F5F0] transition-colors hover:text-[#D4FF3F]"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
-                </Link>
+                </TransitionLink>
               ))}
             </nav>
             <div className="mt-auto text-xs uppercase tracking-[0.3em] text-white/30">

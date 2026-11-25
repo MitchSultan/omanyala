@@ -1,12 +1,12 @@
-import Link from "next/link";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 
 const footerLinks = [
-  { href: "#hero", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#runs", label: "Runs" },
-  { href: "#mission", label: "Mission" },
-  { href: "#shop", label: "Shop" },
-  { href: "#partners", label: "Partners" },
+  { href: "/#hero", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#runs", label: "Runs" },
+  { href: "/#mission", label: "Mission" },
+  { href: "/#shop", label: "Shop" },
+  { href: "/#partners", label: "Partners" },
 ];
 
 export function Footer() {
@@ -27,13 +27,13 @@ export function Footer() {
           {/* Nav links */}
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             {footerLinks.map((link) => (
-              <Link
+              <TransitionLink
                 key={link.href}
                 href={link.href}
                 className="transition-colors hover:text-[#D4FF3F]"
               >
                 {link.label}
-              </Link>
+              </TransitionLink>
             ))}
           </div>
 

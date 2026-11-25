@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
+import { LoaderGate } from "@/components/loader/LoaderGate";
+import { TransitionProvider } from "@/components/transition/TransitionProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,6 +37,20 @@ export const metadata: Metadata = {
   },
 };
 
+const loaderInitScript = `
+(function(){
+  try {
+    var force = window.location.search.indexOf('loader=1') !== -1;
+    var loaded = sessionStorage.getItem('omanyala:loaded') === '1';
+    if (force || !loaded) {
+      document.documentElement.classList.add('is-loading');
+    } else {
+      document.documentElement.dataset.loaded = 'true';
+    }
+  } catch (e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -43,9 +60,19 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: loaderInitScript }} />
+        <noscript>
+          <style>{`html.is-loading main { opacity: 1 !important; visibility: visible !important; }`}</style>
+        </noscript>
+      </head>
       <body className="min-h-screen bg-[#0A0A0A] text-[#F5F5F0]">
-        {children}
+        <Suspense fallback={null}>
+          <LoaderGate />
+        </Suspense>
+        <TransitionProvider>{children}</TransitionProvider>
       </body>
     </html>
   );
