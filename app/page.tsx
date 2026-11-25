@@ -17,17 +17,19 @@ export default function Home() {
     return (
         <>
             <Navbar />
-            <Hero/>
-            <About/>
-            <Found/>
-            <MissionVision/>
-            <PreviousRuns/>
-            <Partners/>
-            <Products/>
-            <SocialMedia/>
-            <Banner/>
-            <FinalCta/>
+            <main>
+                <Hero/>
+                <About/>
+                <Found/>
+                <MissionVision/>
+                <PreviousRuns/>
+                <Partners/>
+                <Products/>
+                <SocialMedia/>
+                <Banner/>
+                <FinalCta/>
+            </main>
             <Footer/>
-
-        
-        </>)}
+        </>
+    );
+}

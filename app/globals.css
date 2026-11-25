@@ -133,6 +133,12 @@
   background: rgba(212, 255, 63, 0.45);
 }
 
+/* Prevent flash of content while initial sprint loader is active */
+html.is-loading:not([data-loaded="true"]) main {
+  opacity: 0;
+  visibility: hidden;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {

@@ -4,8 +4,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReminderDialog } from "@/components/ReminderDialog";
+import { TransitionLink } from "@/components/transition/TransitionLink";
 import { heroData } from "@/lib/mock-data";
 import { gsap } from "@/lib/gsap";
+import { HERO_INTRO } from "@/lib/motion.config";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -49,55 +51,81 @@ export function Hero() {
     }
   }, [reducedMotion, isVisible]);
 
-  /* GSAP headline reveal — fast snap-up, power4 easing, not dreamy */
+  /* GSAP headline reveal — starts on loader:complete (or immediately if skipped) */
   useEffect(() => {
     if (reducedMotion) return;
 
-    const tl = gsap.timeline({ delay: 0.15 });
+    let tl: gsap.core.Timeline | null = null;
+    let played = false;
 
-    tl.fromTo(
-      "[data-hero-word]",
-      { y: 60, opacity: 0, rotateX: -15 },
-      {
-        y: 0,
-        opacity: 1,
-        rotateX: 0,
-        duration: 0.55,
-        stagger: 0.06,
-        ease: "power4.out",
+    const playIntro = () => {
+      if (played) return;
+      played = true;
+
+      tl = gsap.timeline({ delay: HERO_INTRO.delay });
+
+      const navEl = document.querySelector("nav");
+      if (navEl) {
+        tl.fromTo(
+          navEl,
+          { y: -16, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
+          0
+        );
       }
-    );
 
-    tl.fromTo(
-      "[data-hero-sub]",
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" },
-      "-=0.2"
-    );
+      tl.fromTo(
+        "[data-hero-word]",
+        { y: 60, opacity: 0, rotateX: -15 },
+        {
+          y: 0,
+          opacity: 1,
+          rotateX: 0,
+          duration: HERO_INTRO.wordDuration,
+          stagger: HERO_INTRO.wordStagger,
+          ease: HERO_INTRO.wordEase,
+        },
+        0
+      );
 
-    tl.fromTo(
-      "[data-hero-cta]",
-      { y: 16, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.35, stagger: 0.08, ease: "power3.out" },
-      "-=0.15"
-    );
+      tl.fromTo(
+        "[data-hero-sub]",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" },
+        "-=0.2"
+      );
 
-    tl.fromTo(
-      "[data-hero-stat]",
-      { x: 30, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.5, ease: "power4.out" },
-      "-=0.3"
-    );
+      tl.fromTo(
+        "[data-hero-cta]",
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.35, stagger: 0.08, ease: "power3.out" },
+        "-=0.15"
+      );
 
-    tl.fromTo(
-      "[data-hero-scroll]",
-      { opacity: 0 },
-      { opacity: 1, duration: 0.4 },
-      "-=0.1"
-    );
+      tl.fromTo(
+        "[data-hero-stat]",
+        { x: 30, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.5, ease: "power4.out" },
+        "-=0.3"
+      );
+
+      tl.fromTo(
+        "[data-hero-scroll]",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.4 },
+        "-=0.1"
+      );
+    };
+
+    if (document.documentElement.dataset.loaded === "true") {
+      playIntro();
+    } else {
+      window.addEventListener("loader:complete", playIntro, { once: true });
+    }
 
     return () => {
-      tl.kill();
+      window.removeEventListener("loader:complete", playIntro);
+      tl?.kill();
     };
   }, [reducedMotion]);
 
@@ -169,12 +197,12 @@ export function Hero() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <div data-hero-cta style={{ opacity: reducedMotion ? 1 : 0 }}>
-                <a
+                <TransitionLink
                   href="#runs"
                   className="inline-flex items-center justify-center rounded-full bg-[#E4272A] px-7 py-4 text-sm font-semibold text-[#F5F5F0] transition-transform hover:bg-[#E4272A]/90 hover:scale-[1.04] active:scale-[0.98]"
                 >
                   See Last Run
-                </a>
+                </TransitionLink>
               </div>
 
               <div data-hero-cta style={{ opacity: reducedMotion ? 1 : 0 }}>
@@ -233,13 +261,13 @@ export function Hero() {
               Fast. Focused. Forward.
             </span>
           </div>
-          <a
+          <TransitionLink
             href="#about"
             className="flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.3em] transition-colors hover:border-[#D4FF3F]/50 hover:text-[#D4FF3F]"
           >
             <span>Scroll</span>
             <ChevronDown className="h-4 w-4 animate-bounce" />
-          </a>
+          </TransitionLink>
         </div>
       </div>
     </section>
