@@ -1,8 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
 import { aboutStats } from "@/lib/mock-data";
 import { StatCounter } from "@/components/StatCounter";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { useGSAPReveal } from "@/hooks/useGSAPReveal";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { TransitionLink } from "@/components/transition/TransitionLink";
@@ -32,7 +38,7 @@ export function About() {
           </div>
         </div>
 
-        <div className="space-y-8">
+        <div className="min-w-0 space-y-8">
           <div>
             <p className="text-xs uppercase tracking-[0.35em] text-[#D4FF3F]">
               About Ferdinand
@@ -69,8 +75,8 @@ export function About() {
               at the absolute top of the sport.
             </ScrollReveal>
             <TransitionLink
-              href="/story"
-              transitionLabel="STORY"
+              href="/about"
+              transitionLabel="ABOUT"
               className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.3em] text-[#D4FF3F] transition-colors hover:text-[#F5F5F0]"
             >
               Read Full Story →
@@ -78,7 +84,27 @@ export function About() {
           </div>
 
           {/* Animated stat counters — MOCK illustrative data */}
-          <div className="grid gap-4 sm:grid-cols-2">
+          <Carousel
+            aria-label="About Ferdinand statistics"
+            opts={{ align: "start", loop: true }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+              }),
+            ]}
+            className="w-full min-w-0 max-w-full overflow-hidden sm:hidden"
+          >
+            <CarouselContent>
+              {aboutStats.map((stat) => (
+                <CarouselItem key={stat.label}>
+                  <StatCounter {...stat} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+          <div className="hidden gap-4 sm:grid sm:grid-cols-2">
             {aboutStats.map((stat) => (
               <StatCounter key={stat.label} {...stat} />
             ))}

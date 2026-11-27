@@ -1,44 +1,41 @@
-/**
- * app/foundation/page.tsx — Placeholder route for Omanyala Foundation Trust.
- *
- * Purpose: Target route for the "About Foundation →" CTA so page transitions
- * can be verified end-to-end.
- *
- * Connected to: TransitionLink in Found.tsx, Navbar.tsx, Footer.tsx
- */
-
-// TODO: replace with real page
+import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/sections/Footer";
-import { TransitionLink } from "@/components/transition/TransitionLink";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { FoundationHero } from "@/components/foundation/FoundationHero";
+import { FoundationAbout } from "@/components/foundation/FoundationAbout";
+import { VisionMissionPassions } from "@/components/foundation/VisionMissionPassions";
+import { ProjectsCarousel } from "@/components/foundation/ProjectsCarousel";
 
-export default function Foundation() {
+export const metadata: Metadata = {
+  title: "Omanyala Foundation — Building Pathways From Every Starting Line",
+  description:
+    "Discover the Omanyala Foundation Trust: grassroots athletics, Street Sprint Festival, Omanyala Sprint Club, and youth empowerment across Kenya.",
+  openGraph: {
+    title: "Omanyala Foundation — Building Pathways From Every Starting Line",
+    description:
+      "Empowering young Kenyan athletes through grassroots sprint clinics, community festivals, and education.",
+    type: "website",
+    locale: "en_KE",
+    images: [
+      {
+        url: "/found.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Omanyala Foundation Trust",
+      },
+    ],
+  },
+};
+
+export default function FoundationPage() {
   return (
     <>
       <Navbar />
-      <main className="flex min-h-screen flex-col items-center justify-center bg-[#0A0A0A] px-6 py-24 text-center">
-        <p className="text-xs uppercase tracking-[0.35em] text-[#D4FF3F]">
-          Foundation
-        </p>
-        <ScrollReveal
-          as="h1"
-          mode="lines"
-          className="mt-4 text-4xl font-bold tracking-[-0.03em] text-[#F5F5F0] sm:text-5xl lg:text-6xl"
-        >
-          Omanyala Foundation Trust
-        </ScrollReveal>
-        <p className="mt-6 max-w-2xl text-base leading-7 text-white/60">
-          We are committed to building a strong foundation for our youth,
-          advancing sports and athletic development across Kenya.
-        </p>
-        <TransitionLink
-          href="/"
-          transitionLabel="HOME"
-          className="mt-10 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#D4FF3F] transition-colors hover:border-[#D4FF3F]/50"
-        >
-          ← Back Home
-        </TransitionLink>
+      <main>
+        <FoundationHero />
+        <FoundationAbout />
+        <VisionMissionPassions />
+        <ProjectsCarousel />
       </main>
       <Footer />
     </>

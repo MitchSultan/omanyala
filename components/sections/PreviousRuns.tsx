@@ -115,7 +115,7 @@ export function PreviousRuns() {
         </div>
 
         {/* Progress dots */}
-        <div className="mt-6 flex gap-2">
+        <div className="mt-6 hidden gap-2 lg:flex">
           {raceEntries.map((_, i) => (
             <button
               key={i}
@@ -130,6 +130,35 @@ export function PreviousRuns() {
             />
           ))}
         </div>
+
+        <nav
+          aria-label="Choose a previous race"
+          className="mt-8 min-w-0 lg:hidden"
+        >
+          <div
+            role="group"
+            aria-label="Scroll to choose a race"
+            tabIndex={0}
+            className="flex w-full min-w-0 max-w-full snap-x snap-proximity gap-2 overflow-x-auto overscroll-x-contain focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4FF3F]/60"
+            style={{ touchAction: "pan-x", WebkitOverflowScrolling: "touch" }}
+          >
+            {raceEntries.map((entry, i) => (
+              <button
+                key={entry.name}
+                type="button"
+                onClick={() => goTo(i)}
+                aria-pressed={i === activeIndex}
+                className={`shrink-0 snap-start whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                  i === activeIndex
+                    ? "border-[#D4FF3F]/40 bg-[#D4FF3F]/10 text-[#D4FF3F]"
+                    : "border-white/10 bg-white/[0.03] text-white/60 hover:border-white/20 hover:text-[#F5F5F0]"
+                }`}
+              >
+                {entry.name}
+              </button>
+            ))}
+          </div>
+        </nav>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Featured race detail card */}
@@ -175,7 +204,7 @@ export function PreviousRuns() {
           </Card>
 
           {/* Race list — all entries */}
-          <div className="flex flex-col gap-3">
+          <div className="hidden flex-col gap-3 lg:flex">
             {raceEntries.map((entry, i) => (
               <button
                 key={entry.name}

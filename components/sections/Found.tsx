@@ -1,8 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
 import { foundStats } from "@/lib/mock-data";
 import { FoundCounter } from "@/components/FoundCounter";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { useGSAPReveal } from "@/hooks/useGSAPReveal";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { TransitionLink } from "@/components/transition/TransitionLink";
@@ -20,7 +26,7 @@ export function Found() {
         {/* Portrait image */}
         
 
-        <div className="space-y-8">
+        <div className="min-w-0 space-y-8">
           <div>
             <p className="text-xs uppercase tracking-[0.35em] text-[#D4FF3F]">
               About the Foundation
@@ -52,7 +58,27 @@ export function Found() {
           </div>
 
           {/* Animated stat counters — MOCK illustrative data */}
-          <div className="grid gap-4 sm:grid-cols-2">
+          <Carousel
+            aria-label="Foundation statistics"
+            opts={{ align: "start", loop: true }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+              }),
+            ]}
+            className="w-full min-w-0 max-w-full overflow-hidden sm:hidden"
+          >
+            <CarouselContent>
+              {foundStats.map((stat) => (
+                <CarouselItem key={stat.label}>
+                  <FoundCounter {...stat} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+          <div className="hidden gap-4 sm:grid sm:grid-cols-2">
             {foundStats.map((stat) => (
               <FoundCounter key={stat.label} {...stat} />
             ))}

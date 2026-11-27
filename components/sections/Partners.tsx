@@ -40,7 +40,7 @@ export function Partners({ logos = defaultLogos }: { logos?: Logo[] }) {
         <ScrollReveal
           as="h2"
           mode="lines"
-          className="text-4xl text-white font-semibold uppercase"
+          className="text-4xl  font-semibold uppercase"
         >
           We&apos;ve partnered with
         </ScrollReveal>

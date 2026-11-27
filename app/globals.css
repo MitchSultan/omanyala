@@ -89,13 +89,33 @@
   --foreground: #F5F5F0;
 }
 
+html.light {
+  --background: #F5F5F0;
+  --foreground: #0A0A0A;
+  --card: #FFFFFF;
+  --card-foreground: #0A0A0A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0A0A0A;
+  --primary: #0A0A0A;
+  --primary-foreground: #F5F5F0;
+  --secondary: #EAEAE3;
+  --secondary-foreground: #0A0A0A;
+  --muted: #EAEAE3;
+  --muted-foreground: rgba(10, 10, 10, 0.6);
+  --accent: #D4FF3F;
+  --accent-foreground: #0A0A0A;
+  --border: rgba(10, 10, 10, 0.12);
+  --input: rgba(10, 10, 10, 0.15);
+  --ring: rgba(92, 122, 0, 0.5);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    background-color: #0A0A0A;
-    color: #F5F5F0;
+    background-color: var(--background);
+    color: var(--foreground);
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   html {
@@ -147,4 +167,101 @@ html.is-loading:not([data-loaded="true"]) main {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* Native modal dialog scroll containment */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* Hide horizontal scrollbar for custom scroll-snap carousels while preserving scroll */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Light theme surface, text, and border adaptations for dark-first components */
+html.light .bg-\[\#0A0A0A\],
+html.light .bg-\[\#0A0A0A\]\/80 {
+  background-color: #F5F5F0;
+}
+html.light .bg-\[\#0F0F0F\],
+html.light .bg-\[\#080808\] {
+  background-color: #ECECE5;
+}
+html.light .bg-\[\#111111\],
+html.light .bg-\[\#111\],
+html.light .bg-\[\#141414\] {
+  background-color: #FFFFFF;
+}
+html.light .text-\[\#F5F5F0\] {
+  color: #0A0A0A;
+}
+html.light .text-\[\#D4FF3F\] {
+  color: #4B6300;
+}
+html.light .text-white\/75,
+html.light .text-white\/70,
+html.light .text-white\/65 {
+  color: rgba(10, 10, 10, 0.78);
+}
+html.light .text-white\/60,
+html.light .text-white\/55,
+html.light .text-white\/50 {
+  color: rgba(10, 10, 10, 0.62);
+}
+html.light .text-white\/40,
+html.light .text-white\/30 {
+  color: rgba(10, 10, 10, 0.45);
+}
+html.light .text-white\/\[0\.04\] {
+  color: rgba(10, 10, 10, 0.06);
+}
+html.light .border-white\/10,
+html.light .border-white\/15,
+html.light .border-white\/20,
+html.light .divide-white\/10 > :not(:last-child) {
+  border-color: rgba(10, 10, 10, 0.12);
+}
+html.light .bg-white\/5,
+html.light .bg-white\/\[0\.03\] {
+  background-color: rgba(10, 10, 10, 0.04);
+}
+html.light .bg-white\/25 {
+  background-color: rgba(10, 10, 10, 0.2);
+}
+html.light .bg-\[\#D4FF3F\] {
+  background-color: #D4FF3F;
+  color: #0A0A0A;
+}
+
+/* Keep full-bleed photography heroes dark-backed for legibility in light mode */
+html.light [data-hero-media="true"] {
+  background-color: #0A0A0A;
+  color: #F5F5F0;
+}
+html.light [data-hero-media="true"] .text-\[\#F5F5F0\] {
+  color: #F5F5F0;
+}
+html.light [data-hero-media="true"] .text-\[\#D4FF3F\] {
+  color: #D4FF3F;
+}
+html.light [data-hero-media="true"] .text-white\/75,
+html.light [data-hero-media="true"] .text-white\/80,
+html.light [data-hero-media="true"] .text-white\/60,
+html.light [data-hero-media="true"] .text-white\/50 {
+  color: rgba(245, 245, 240, 0.8);
+}
+html.light [data-hero-media="true"] .border-white\/10,
+html.light [data-hero-media="true"] .border-white\/15,
+html.light [data-hero-media="true"] .border-white\/20 {
+  border-color: rgba(255, 255, 255, 0.2);
 }

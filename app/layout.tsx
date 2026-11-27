@@ -40,6 +40,15 @@ export const metadata: Metadata = {
 const loaderInitScript = `
 (function(){
   try {
+    var t = localStorage.getItem('omanyala:theme');
+    if (t === 'light') {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+      document.documentElement.style.colorScheme = 'light';
+    } else {
+      document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
+    }
     var force = window.location.search.indexOf('loader=1') !== -1;
     var loaded = sessionStorage.getItem('omanyala:loaded') === '1';
     if (force || !loaded) {
@@ -68,7 +77,7 @@ export default function RootLayout({
           <style>{`html.is-loading main { opacity: 1 !important; visibility: visible !important; }`}</style>
         </noscript>
       </head>
-      <body className="min-h-screen bg-[#0A0A0A] text-[#F5F5F0]">
+      <body className="min-h-screen bg-background text-foreground transition-colors duration-300">
         <Suspense fallback={null}>
           <LoaderGate />
         </Suspense>

@@ -1,19 +1,43 @@
-import react from "react";
+import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/sections/Footer";
+import { AboutHero } from "@/components/about/AboutHero";
+import { StoryTimeline } from "@/components/about/StoryTimeline";
+import { RaceCarousel } from "@/components/about/RaceCarousel";
+import { AwardsSection } from "@/components/about/AwardsSection";
 
-const About = () => {
+export const metadata: Metadata = {
+  title: "About — Ferdinand Omanyala | Africa's Fastest Man",
+  description:
+    "Explore the story behind the speed: from rugby fields in Nairobi to breaking the African 100m record, signature race highlights, and major accolades.",
+  openGraph: {
+    title: "About — Ferdinand Omanyala | Africa's Fastest Man",
+    description:
+      "Explore the story behind the speed: from rugby fields in Nairobi to breaking the African 100m record, signature race highlights, and major accolades.",
+    type: "website",
+    locale: "en_KE",
+    images: [
+      {
+        url: "/hero.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Ferdinand Omanyala on the track",
+      },
+    ],
+  },
+};
+
+export default function AboutPage() {
   return (
     <>
-    <Navbar />
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-        <h1 className="text-4xl font-bold mb-4">About Us</h1>
-        <p className="text-lg text-center max-w-2xl">
-            Welcome to our application! We are dedicated to providing the best user experience and continuously improving our services. Our team is passionate about technology and innovation, and we strive to create solutions that make a difference in people's lives.
-        </p>
-    </div>
-    <Footer />
-  </>);
+      <Navbar />
+      <main>
+        <AboutHero />
+        <StoryTimeline />
+        <RaceCarousel />
+        <AwardsSection />
+      </main>
+      <Footer />
+    </>
+  );
 }
-
-export default About;

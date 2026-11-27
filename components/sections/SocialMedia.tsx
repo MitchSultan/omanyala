@@ -39,12 +39,23 @@ export function SocialMedia() {
         </div>
 
         {/* Social platform cards */}
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Social platforms"
+          className="
+            mt-10
+            -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-6 pb-2
+            [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+            sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0
+            lg:grid-cols-4
+          "
+        >
           {socials.map((social) => (
             <a
               key={social.platform}
               href="#"
-              className="group rounded-[1.5rem] border border-white/10 bg-[#111111] p-6 transition-all duration-300 hover:border-[#D4FF3F]/30 hover:bg-[#D4FF3F]/5"
+              className="group w-[80vw] max-w-[360px] shrink-0 snap-start rounded-[1.5rem] border border-white/10 bg-[#111111] p-6 transition-all duration-300 hover:border-[#D4FF3F]/30 hover:bg-[#D4FF3F]/5 sm:w-auto sm:max-w-none sm:shrink sm:snap-align-none"
             >
               <div className="flex items-center justify-between">
                 <span className="text-2xl">

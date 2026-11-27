@@ -169,12 +169,12 @@ export function Hero() {
         <div className="grid gap-12 pt-4 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:pt-24">
           {/* Left: headline + CTAs */}
           <div className="max-w-4xl">
-            <p className="text-xs uppercase tracking-[0.4em] text-[#D4FF3F]">
-              {heroData.eyebrow}
-            </p>
+            {/* <p className="text-xs uppercase tracking-[0.4em] text-[#D4FF3F]">
+              Fastest Man
+            </p> */}
 
             {/* H1 is the LCP element — rendered immediately, animated with GSAP */}
-            <h1 className="mt-5 overflow-hidden text-[clamp(2.5rem,8vw,7rem)] font-black uppercase leading-[0.9] tracking-[-0.04em] text-[#F5F5F0]">
+            <h1 className="mt-5 overflow-hidden text-[clamp(2.5rem,8vw,7rem)] font-black uppercase leading-[0.9] tracking-[-0.04em] text-[#ffffff]">
               {headlineWords.map((word, i) => (
                 <span
                   key={`${word}-${i}`}
@@ -189,7 +189,7 @@ export function Hero() {
 
             <p
               data-hero-sub
-              className="mt-6 max-w-md text-lg leading-relaxed text-white/70 sm:text-xl"
+              className="mt-6 max-w-md text-lg leading-relaxed text-white sm:text-xl"
               style={{ opacity: reducedMotion ? 1 : 0 }}
             >
               {heroData.subheadline}
@@ -205,33 +205,33 @@ export function Hero() {
                 </TransitionLink>
               </div>
 
-              <div data-hero-cta style={{ opacity: reducedMotion ? 1 : 0 }}>
+              {/* <div data-hero-cta style={{ opacity: reducedMotion ? 1 : 0 }}>
                 <ReminderDialog
                   trigger={
                     <Button
                       variant="outline"
-                      className="rounded-full border-white/20 bg-white/5 px-7 py-6 text-sm font-semibold text-[#F5F5F0] transition-all hover:bg-white/10 hover:scale-[1.04] active:scale-[0.98]"
+                      className="rounded-full border-white/20 bg-white/5 px-7 py-6 text-sm font-semibold text-[#Ffffff] transition-all hover:bg-white/10 hover:text-[#D4FF3F] hover:scale-[1.04] active:scale-[0.98]"
                     >
                       Set Reminder for Next Race
                     </Button>
                   }
                   defaultRace={heroData.upcomingRace}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
 
           {/* Right: last race stat card with stopwatch treatment */}
-          <div
+          {/* <div
             data-hero-stat
-            className="self-end rounded-3xl border border-white/10 bg-black/50 p-6 backdrop-blur-md"
+            className="self-end display:none lg:display:block rounded-3xl border border-white/10 bg-black/50 p-6 backdrop-blur-md"
             style={{ opacity: reducedMotion ? 1 : 0 }}
           >
-            <p className="text-xs uppercase tracking-[0.35em] text-white/50">
+            <p className="text-xs uppercase tracking-[0.35em] text-[#D4FF3F]">
               Last race
             </p>
             <div className="mt-4 space-y-2 text-sm text-white/80">
-              <p className="text-xl font-semibold text-[#F5F5F0]">
+              <p className="text-xl font-semibold text-white/90">
                 {heroData.event}
               </p>
               <p>
@@ -246,7 +246,7 @@ export function Hero() {
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom scroll indicator */}
@@ -257,17 +257,17 @@ export function Hero() {
         >
           <div className="flex items-center gap-3">
             <span className="h-[1px] w-8 bg-[#D4FF3F]" />
-            <span className="text-xs uppercase tracking-[0.3em]">
+            <span className="text-xs uppercase tracking-[0.3em] text-[#FFFFFF]">
               Fast. Focused. Forward.
             </span>
           </div>
-          <TransitionLink
+          {/* <TransitionLink
             href="#about"
             className="flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.3em] transition-colors hover:border-[#D4FF3F]/50 hover:text-[#D4FF3F]"
           >
             <span>Scroll</span>
             <ChevronDown className="h-4 w-4 animate-bounce" />
-          </TransitionLink>
+          </TransitionLink> */}
         </div>
       </div>
     </section>

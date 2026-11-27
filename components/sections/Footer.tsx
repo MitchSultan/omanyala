@@ -1,12 +1,14 @@
 import { TransitionLink } from "@/components/transition/TransitionLink";
 
 const footerLinks = [
-  { href: "/#hero", label: "Home" },
-  { href: "/#about", label: "About" },
-  { href: "/#runs", label: "Runs" },
-  { href: "/#mission", label: "Mission" },
-  { href: "/#shop", label: "Shop" },
-  { href: "/#partners", label: "Partners" },
+  { href: "/#", label: "Home" },
+  { href: "/about", label: "About" },
+  // { href: "/runs", label: "Runs" },
+  { href: "/foundation", label: "Foundation" },
+  
+  { href: "https://ferdiomanyala.com", label: "TrackFerdy" },
+  // { href: "/partners", label: "Partners" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Footer() {
