@@ -1,7 +1,7 @@
 import { TransitionLink } from "@/components/transition/TransitionLink";
 
 const footerLinks = [
-  { href: "/#", label: "Home" },
+  { href: "/#hero", label: "Home" },
   { href: "/about", label: "About" },
   // { href: "/runs", label: "Runs" },
   { href: "/foundation", label: "Foundation" },

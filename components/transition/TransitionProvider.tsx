@@ -130,7 +130,8 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       if (isAnimatingRef.current) return;
 
       const targetPath = href.split("#")[0].split("?")[0] || "/";
-      const hash = href.includes("#") ? `#${href.split("#")[1]}` : "";
+      const hashIndex = href.indexOf("#");
+      const hash = hashIndex >= 0 ? href.slice(hashIndex + 1) : "";
 
       isAnimatingRef.current = true;
       setIsAnimating(true);
@@ -167,7 +168,13 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
         // 3. Reset scroll while fully covered, or scroll to hash if present
         if (hash) {
-          const targetEl = document.querySelector(hash);
+          let targetEl: HTMLElement | null = null;
+          try {
+            targetEl = document.getElementById(decodeURIComponent(hash));
+          } catch {
+            targetEl = null;
+          }
+
           if (targetEl) {
             const headerOffset =
               document.querySelector("nav")?.getBoundingClientRect().height || 72;

@@ -24,9 +24,11 @@ export function Banner() {
           Train like the fastest man in Africa.
         </ScrollReveal>
         <div className="mt-8">
+          <a href="/contact" className="inline-block">
           <Button className="rounded-full bg-[#0A0A0A] px-8 py-6 text-sm font-semibold text-[#F5F5F0] transition-transform hover:bg-black/90 hover:scale-105">
             Join the Team
           </Button>
+          </a>
         </div>
       </div>
     </section>
